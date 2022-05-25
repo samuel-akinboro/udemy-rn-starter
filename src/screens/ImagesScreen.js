@@ -5,8 +5,18 @@ import ImageDetails from '../components/ImageDetails'
 const ImagesScreen = ({ navigation }) => {
   return (
     <View>
-      <ImageDetails />
-      <ImageDetails />
+      <ImageDetails
+        title="Miami"
+        source={require('../../assets/mountain.jpg')}
+      />
+      <ImageDetails
+        title="Miami"
+        source={require('../../assets/forest.jpg')}
+      />
+      <ImageDetails
+        title="Miami"
+        source={require('../../assets/mountain.jpg')}
+      />
     </View>
   )
 }
