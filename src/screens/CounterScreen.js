@@ -3,20 +3,39 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const CounterScreen = ({ navigation }) => {
   const [value, setValue] = React.useState(0)
+  
+  const INCREMENT_BY = 5;
 
   const increment = () => {
-    setValue(prevState => prevState + 1)
+    dispatch({
+      type: 'INCREMENT'
+    })
   }
 
   const decrement = () => {
-    if(value > 0) {
-      setValue(prevState => prevState - 1)
+    if(state.count > 0) {
+      dispatch({
+        type: 'DECREMENT'
+      })
     }
   }
 
+  const reducer = (state, action) => {
+    switch(action.type){
+      case 'INCREMENT':
+        return {count: state.count + INCREMENT_BY};
+      case 'DECREMENT': 
+        return {count: state.count - INCREMENT_BY};
+      default: 
+        return state
+    }
+  }
+
+  const [state, dispatch] = React.useReducer(reducer, {count: 0});
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{value}</Text>
+      <Text style={styles.text}>{state.count}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
           style={styles.button}
